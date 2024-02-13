@@ -1,6 +1,16 @@
+"use client";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
+import AccordeonItem from "./acordeonItem";
 
 export default function Accordeon() {
+  const [open, setOpen] = useState<boolean>(false);
+  const toggle = (index: number) => {
+    if ((open && index === 1) || (!open && index === 0)) {
+      return setOpen(false);
+    }
+    return setOpen((open && index === 1) || (!open && index === 0));
+  };
   const data = [
     {
       question: "¿Qué es HTML?",
@@ -55,24 +65,32 @@ export default function Accordeon() {
     },
   ];
   return (
-    <section className={"p-6 bg-white h-1/6 rounded-xl w-11/12 flex overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-[#D9D9D9] scrollbar-track-[#ffffff]"}>
-      <div>
+    <section
+      className={
+        "p-6 bg-white  rounded-xl w-11/12 h-4/6 flex overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-[#D9D9D9] scrollbar-track-[#ffffff]"
+      }
+    >
+      <div className="h-full">
         <div>
-          <h1 className="aling-center font-bold text-2xl my-3">Preguntas frecuentes</h1>
+          <h1 className="aling-center font-bold text-2xl my-6">
+            Preguntas frecuentes
+          </h1>
         </div>
         <div>
           {data.map((item, index) => (
-            <div className="p-3   text-base  mb-3.5 border rounded-xl border-[#E6E9EF]" key={index}>
-              <div className="flex items-center justify-between p-2">
-
-              <h2 className="flex font-bold text-xl my-3 ">{item.question}</h2>
-              {item ? <ChevronUpIcon className=" flex w-5 h-5"/> : <ChevronDownIcon/>}
-              </div>
-              <hr className="text-[#E6E9EF] mb-3.5 mx-1"/>
-              <p className=" leading-7 text-gray-700">{item.response}</p>
+            <div
+              className="p-3  text-base  mb-3.5 border rounded-2xl border-[#E6E9EF]"
+              key={index}
+            >
+              <AccordeonItem
+                key={index}
+                open={open}
+                setOpen={setOpen}
+                i={index + 1}
+                question={item.question}
+                response={item.response}
+              />
             </div>
-            
-
           ))}
         </div>
       </div>

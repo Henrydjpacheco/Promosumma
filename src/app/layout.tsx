@@ -25,6 +25,7 @@ export default function RootLayout({
               height={68}
               className="z-0  "
               alt="Screenshots of the dashboard project showing desktop version"
+              priority
             />
           </div>
         </header>

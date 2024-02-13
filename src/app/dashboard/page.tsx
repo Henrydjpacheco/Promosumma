@@ -1,4 +1,4 @@
-import CardCredit from "@/app/dashboard/card-credit";
+import CardCredit from "@/src/app/dashboard/card-credit";
 
 export default function Page() {
   return (
