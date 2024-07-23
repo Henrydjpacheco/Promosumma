@@ -1,7 +1,7 @@
 import CardCredit from "@/src/app/dashboard/card-credit";
 import { Suspense } from "react";
 import { CardCreditSkeleton } from "../../ui/skeletons";
-
+import { createPseTransaction } from "@/src/app/lib/actions";
 export default function Page() {
   return (
     <main
@@ -11,21 +11,22 @@ export default function Page() {
       <div className="w-full pt-3 mt-6 ml-9">
         <h1 className="font-bold  text-2xl text-[#262945]">Pagar crédito</h1>
       </div>
-      <div className="mt-6  grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-2">
+      <div className="mt-6  grid grid-cols-2 gap-6 ">
         <Suspense>
-
-        <div className="flex items-center justify-center w-full h-full  ">
-          <CardCredit />
-        </div>
+          <div className="flex items-center justify-center w-full h-full  ">
+            <CardCredit />
+          </div>
+          
         </Suspense>
-        <Suspense fallback={<CardCreditSkeleton/>}>
-
-        <div className="flex items-center justify-start w-full h-full ">
-
-          <CardCredit />
-        </div>
+        <Suspense fallback={<CardCreditSkeleton />}>
+          <div className="flex items-center justify-start w-full h-full ">
+            <CardCredit />
+          </div>
         </Suspense>
+       
       </div>
+   
+     
     </main>
   );
 }
